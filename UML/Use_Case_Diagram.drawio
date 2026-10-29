@@ -1,0 +1,100 @@
+<mxfile host="app.diagrams.net" agent="ChatGPT">
+  <diagram id="lifedrop-use-case" name="Use Case Diagram">
+    <mxGraphModel dx="1272" dy="694" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="boundary" parent="1" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;align=center;spacingTop=10;fontStyle=1;fontSize=16;" value="LifeDrop — Blood Donation &amp; Request Portal" vertex="1">
+          <mxGeometry height="650" width="650" x="270" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="donor" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Donor" vertex="1">
+          <mxGeometry height="100" width="50" x="100" y="190" as="geometry" />
+        </mxCell>
+        <mxCell id="patient" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Patient / Requester" vertex="1">
+          <mxGeometry height="100" width="70" x="90" y="470" as="geometry" />
+        </mxCell>
+        <mxCell id="admin" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Admin" vertex="1">
+          <mxGeometry height="100" width="50" x="1000" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="uc1" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="Register" vertex="1">
+          <mxGeometry height="45" width="150" x="330" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="uc2" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="Login" vertex="1">
+          <mxGeometry height="45" width="150" x="570" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="uc3" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="Manage Donor Profile" vertex="1">
+          <mxGeometry height="45" width="180" x="330" y="205" as="geometry" />
+        </mxCell>
+        <mxCell id="uc4" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="View Blood Requests" vertex="1">
+          <mxGeometry height="45" width="180" x="570" y="205" as="geometry" />
+        </mxCell>
+        <mxCell id="uc5" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="Accept / Reject Request" vertex="1">
+          <mxGeometry height="45" width="190" x="330" y="285" as="geometry" />
+        </mxCell>
+        <mxCell id="uc6" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="Search Donors" vertex="1">
+          <mxGeometry height="45" width="150" x="570" y="285" as="geometry" />
+        </mxCell>
+        <mxCell id="uc7" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="Submit Blood Request" vertex="1">
+          <mxGeometry height="45" width="190" x="330" y="365" as="geometry" />
+        </mxCell>
+        <mxCell id="uc8" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="Track Request Status" vertex="1">
+          <mxGeometry height="45" width="180" x="570" y="365" as="geometry" />
+        </mxCell>
+        <mxCell id="uc9" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="Receive Notifications" vertex="1">
+          <mxGeometry height="45" width="190" x="330" y="445" as="geometry" />
+        </mxCell>
+        <mxCell id="uc10" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="Manage Users" vertex="1">
+          <mxGeometry height="45" width="150" x="570" y="525" as="geometry" />
+        </mxCell>
+        <mxCell id="uc11" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="Manage Blood Requests" vertex="1">
+          <mxGeometry height="45" width="190" x="330" y="525" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="donor" style="endArrow=none;html=1;rounded=0;" target="uc1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="donor" style="endArrow=none;html=1;rounded=0;" target="uc2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="donor" style="endArrow=none;html=1;rounded=0;" target="uc3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="donor" style="endArrow=none;html=1;rounded=0;" target="uc4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="donor" style="endArrow=none;html=1;rounded=0;" target="uc5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="1" source="donor" style="endArrow=none;html=1;rounded=0;" target="uc9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" edge="1" parent="1" source="patient" style="endArrow=none;html=1;rounded=0;" target="uc1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e8" edge="1" parent="1" source="patient" style="endArrow=none;html=1;rounded=0;" target="uc2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e9" edge="1" parent="1" source="patient" style="endArrow=none;html=1;rounded=0;" target="uc6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e10" edge="1" parent="1" source="patient" style="endArrow=none;html=1;rounded=0;" target="uc7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e11" edge="1" parent="1" source="patient" style="endArrow=none;html=1;rounded=0;" target="uc8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e12" edge="1" parent="1" source="patient" style="endArrow=none;html=1;rounded=0;" target="uc9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e13" edge="1" parent="1" source="admin" style="endArrow=none;html=1;rounded=0;" target="uc2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e14" edge="1" parent="1" source="admin" style="endArrow=none;html=1;rounded=0;" target="uc10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e15" edge="1" parent="1" source="admin" style="endArrow=none;html=1;rounded=0;" target="uc11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

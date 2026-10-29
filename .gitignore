@@ -1,0 +1,32 @@
+﻿# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Python virtual environments
+.venv/
+venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Editors
+.vscode/
+
+# Testing
+.pytest_cache/
+.coverage
+
+# Local backups
+app_backup*.py
+app_old.py
+
+# Operating system
+.DS_Store
+Thumbs.db
+
+# Local admin setup script
+create_admin.py
+
+templates/index_before_offline_locations.html

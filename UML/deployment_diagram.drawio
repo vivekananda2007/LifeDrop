@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" modified="2026-10-10T09:10:00.000Z" agent="ChatGPT" version="24.7.17" type="device">
+  <diagram id="lifedrop-deployment" name="Deployment Diagram">
+    <mxGraphModel dx="1500" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="&lt;b&gt;LifeDrop — Deployment Diagram&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;fontSize=24;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="250" y="20" width="700" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="client" value="&lt;b&gt;Client Device&lt;/b&gt;&lt;br&gt;&lt;i&gt;&amp;lt;&amp;lt;device&amp;gt;&amp;gt;&lt;/i&gt;" style="swimlane;html=1;startSize=42;horizontal=1;rounded=1;arcSize=8;fillColor=#dbeafe;strokeColor=#4b78a8;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="70" y="130" width="260" height="290" as="geometry" />
+        </mxCell>
+        <mxCell id="browser" value="&lt;b&gt;Web Browser&lt;/b&gt;&lt;br&gt;&lt;br&gt;LifeDrop UI&lt;br&gt;&lt;br&gt;HTML • CSS • JavaScript" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#4b78a8;fontSize=14;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="100" y="205" width="200" height="155" as="geometry" />
+        </mxCell>
+        <mxCell id="apphost" value="&lt;b&gt;Application Server&lt;/b&gt;&lt;br&gt;&lt;i&gt;&amp;lt;&amp;lt;node&amp;gt;&amp;gt;&lt;/i&gt;" style="swimlane;html=1;startSize=42;horizontal=1;rounded=1;arcSize=8;fillColor=#dcfce7;strokeColor=#4c956c;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="440" y="130" width="300" height="290" as="geometry" />
+        </mxCell>
+        <mxCell id="flask" value="&lt;b&gt;Flask Backend&lt;/b&gt;&lt;br&gt;&lt;i&gt;&amp;lt;&amp;lt;execution environment&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;br&gt;REST/API routes&lt;br&gt;Authentication&lt;br&gt;Donor matching&lt;br&gt;Request management&lt;br&gt;Notification logic" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#4c956c;fontSize=13;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="480" y="205" width="220" height="175" as="geometry" />
+        </mxCell>
+        <mxCell id="dbhost" value="&lt;b&gt;Database Server&lt;/b&gt;&lt;br&gt;&lt;i&gt;&amp;lt;&amp;lt;node&amp;gt;&amp;gt;&lt;/i&gt;" style="swimlane;html=1;startSize=42;horizontal=1;rounded=1;arcSize=8;fillColor=#fef3c7;strokeColor=#b38b20;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="850" y="130" width="280" height="290" as="geometry" />
+        </mxCell>
+        <mxCell id="mysql" value="&lt;b&gt;MySQL Database&lt;/b&gt;&lt;br&gt;&lt;i&gt;&amp;lt;&amp;lt;database&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;br&gt;User accounts&lt;br&gt;Donor profiles&lt;br&gt;Blood requests&lt;br&gt;Notifications&lt;br&gt;Request status" style="shape=cylinder;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#ffffff;strokeColor=#b38b20;fontSize=13;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="885" y="205" width="210" height="175" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" value="HTTPS / HTTP" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#4b78a8;endArrow=block;endFill=1;fontSize=13;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="browser" target="flask">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" value="SQL queries / results" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#4c956c;startArrow=block;startFill=1;endArrow=block;endFill=1;fontSize=13;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="flask" target="mysql">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="note" value="&lt;b&gt;Deployment note:&lt;/b&gt; The browser presents the interface, Flask processes application logic, and MySQL stores persistent data." style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=15;fillColor=#fff7d6;strokeColor=#b38b20;fontSize=14;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="180" y="510" width="840" height="75" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

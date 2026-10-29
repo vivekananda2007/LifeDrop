@@ -1,0 +1,50 @@
+{
+  "name": "indian-cities-data",
+  "version": "1.0.0",
+  "description": "Free, high-performance REST API & Swagger UI for Indian Cities, States, Districts, Sub-districts (Tehsils), and Urban Local Bodies derived from India's official Local Government Directory (LGD).",
+  "type": "module",
+  "main": "src/server.js",
+  "homepage": "https://github.com/kalyangupta12/indian-cities-data#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kalyangupta12/indian-cities-data.git"
+  },
+  "keywords": [
+    "india",
+    "cities",
+    "indian-cities",
+    "districts",
+    "states",
+    "subdistricts",
+    "tehsils",
+    "urban-local-bodies",
+    "municipalities",
+    "lgd",
+    "geodata",
+    "openapi",
+    "swagger",
+    "rest-api",
+    "vercel"
+  ],
+  "author": "Kalyan Gupta <kalyangupta2002@gmail.com>",
+  "contributors": [
+    "Google Gemini <gemini@google.com>"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "sync": "node scripts/sync-lgd.js",
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "node --test",
+    "check": "node --check src/server.js && node --check scripts/sync-lgd.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "7zip-bin": "^5.2.0",
+    "cors": "^2.8.5",
+    "csv-parse": "^6.1.0",
+    "express": "^5.1.0"
+  }
+}

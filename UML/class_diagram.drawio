@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" modified="2026-10-10T00:00:00.000Z" agent="ChatGPT" version="24.7.17" type="device">
+  <diagram id="lifedrop-class" name="Class Diagram">
+    <mxGraphModel dx="1500" dy="1100" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="user" value="&lt;div style=&quot;text-align:center;font-weight:bold;font-size:16px;padding:8px;border-bottom:1px solid #333&quot;&gt;User&lt;/div&gt;&lt;div style=&quot;text-align:left;padding:8px&quot;&gt;- user_id: int&lt;br&gt;- name: string&lt;br&gt;- email: string&lt;br&gt;- password: string&lt;/div&gt;&lt;div style=&quot;text-align:left;padding:8px;border-top:1px solid #333&quot;&gt;+ register()&lt;br&gt;+ login()&lt;br&gt;+ updateProfile()&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;fontSize=13;verticalAlign=top;spacing=4;" vertex="1" parent="1">
+          <mxGeometry x="620" y="60" width="340" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="donor" value="&lt;div style=&quot;text-align:center;font-weight:bold;font-size:16px;padding:8px;border-bottom:1px solid #333&quot;&gt;Donor&lt;/div&gt;&lt;div style=&quot;text-align:left;padding:8px&quot;&gt;- blood_group: string&lt;br&gt;- location: string&lt;br&gt;- availability: bool&lt;/div&gt;&lt;div style=&quot;text-align:left;padding:8px;border-top:1px solid #333&quot;&gt;+ updateAvailability()&lt;br&gt;+ respondToRequest()&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;fontSize=13;verticalAlign=top;spacing=4;" vertex="1" parent="1">
+          <mxGeometry x="70" y="330" width="330" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="patient" value="&lt;div style=&quot;text-align:center;font-weight:bold;font-size:16px;padding:8px;border-bottom:1px solid #333&quot;&gt;Patient / Requester&lt;/div&gt;&lt;div style=&quot;text-align:left;padding:8px&quot;&gt;- contact_number: string&lt;br&gt;- address: string&lt;/div&gt;&lt;div style=&quot;text-align:left;padding:8px;border-top:1px solid #333&quot;&gt;+ createRequest()&lt;br&gt;+ trackRequest()&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;fontSize=13;verticalAlign=top;spacing=4;" vertex="1" parent="1">
+          <mxGeometry x="450" y="330" width="330" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="admin" value="&lt;div style=&quot;text-align:center;font-weight:bold;font-size:16px;padding:8px;border-bottom:1px solid #333&quot;&gt;Admin&lt;/div&gt;&lt;div style=&quot;text-align:left;padding:8px&quot;&gt;- admin_id: int&lt;/div&gt;&lt;div style=&quot;text-align:left;padding:8px;border-top:1px solid #333&quot;&gt;+ manageUsers()&lt;br&gt;+ manageRequests()&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;fontSize=13;verticalAlign=top;spacing=4;" vertex="1" parent="1">
+          <mxGeometry x="830" y="330" width="330" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="blood" value="&lt;div style=&quot;text-align:center;font-weight:bold;font-size:16px;padding:8px;border-bottom:1px solid #333&quot;&gt;BloodRequest&lt;/div&gt;&lt;div style=&quot;text-align:left;padding:8px&quot;&gt;- request_id: int&lt;br&gt;- blood_group: string&lt;br&gt;- units: int&lt;br&gt;- location: string&lt;br&gt;- status: string&lt;/div&gt;&lt;div style=&quot;text-align:left;padding:8px;border-top:1px solid #333&quot;&gt;+ submitRequest()&lt;br&gt;+ updateStatus()&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;fontSize=13;verticalAlign=top;spacing=4;" vertex="1" parent="1">
+          <mxGeometry x="450" y="650" width="340" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="notif" value="&lt;div style=&quot;text-align:center;font-weight:bold;font-size:16px;padding:8px;border-bottom:1px solid #333&quot;&gt;Notification&lt;/div&gt;&lt;div style=&quot;text-align:left;padding:8px&quot;&gt;- notification_id: int&lt;br&gt;- message: string&lt;br&gt;- sent_at: datetime&lt;/div&gt;&lt;div style=&quot;text-align:left;padding:8px;border-top:1px solid #333&quot;&gt;+ sendNotification()&lt;br&gt;+ markAsRead()&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;fontSize=13;verticalAlign=top;spacing=4;" vertex="1" parent="1">
+          <mxGeometry x="900" y="680" width="340" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" value="inherits" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;strokeWidth=2;" edge="1" parent="1" source="donor" target="user">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points"><mxPoint x="235" y="280" /><mxPoint x="235" y="295" /><mxPoint x="700" y="295" /><mxPoint x="700" y="240" /></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="e2" value="inherits" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;strokeWidth=2;" edge="1" parent="1" source="patient" target="user">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points"><mxPoint x="615" y="330" /><mxPoint x="615" y="285" /><mxPoint x="780" y="285" /><mxPoint x="780" y="240" /></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="e3" value="inherits" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;strokeWidth=2;" edge="1" parent="1" source="admin" target="user">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points"><mxPoint x="995" y="330" /><mxPoint x="995" y="295" /><mxPoint x="880" y="295" /><mxPoint x="880" y="240" /></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="e4" value="creates / tracks" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;startArrow=none;strokeWidth=1.5;" edge="1" parent="1" source="patient" target="blood">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points"><mxPoint x="615" y="520" /><mxPoint x="615" y="600" /><mxPoint x="620" y="600" /><mxPoint x="620" y="650" /></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="e5" value="manages" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;startArrow=none;strokeWidth=1.5;" edge="1" parent="1" source="admin" target="blood">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points"><mxPoint x="995" y="520" /><mxPoint x="995" y="590" /><mxPoint x="790" y="590" /><mxPoint x="790" y="760" /></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="e6" value="triggers" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;startArrow=none;strokeWidth=1.5;" edge="1" parent="1" source="blood" target="notif">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points"><mxPoint x="790" y="760" /><mxPoint x="850" y="760" /><mxPoint x="850" y="770" /><mxPoint x="900" y="770" /></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="e7" value="receives" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;startArrow=none;strokeWidth=1.5;" edge="1" parent="1" source="donor" target="notif">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points"><mxPoint x="400" y="425" /><mxPoint x="420" y="425" /><mxPoint x="420" y="920" /><mxPoint x="1060" y="920" /><mxPoint x="1060" y="860" /></Array></mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

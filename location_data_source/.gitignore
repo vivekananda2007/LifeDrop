@@ -1,0 +1,8 @@
+node_modules/
+.env
+.vercel
+data/downloads/*
+!data/downloads/.gitkeep
+data/generated/villages.json
+*.log
+.DS_Store

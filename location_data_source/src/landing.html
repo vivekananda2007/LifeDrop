@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Indian Cities Data API | Free Open Source India LGD Geodata REST API</title>
+  <meta name="description" content="Free, high-performance REST API for Indian Cities, States, Districts, Sub-districts (Tehsils), and Urban Local Bodies derived from India's official Local Government Directory (LGD). Interactive Swagger UI included.">
+  <meta name="keywords" content="Indian Cities API, Indian Cities Data, India LGD API, Districts of India, Municipalities API, Tehsils India, Urban Local Bodies India, Indian Pincode Alternative, Free India Geodata REST API">
+  <meta name="author" content="Kalyan Gupta & Google Gemini">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🇮🇳</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #ff9933;
+      --primary-dark: #ea580c;
+      --secondary: #138808;
+      --navy: #0f172a;
+      --dark-card: #1e293b;
+      --light-bg: #0b0f19;
+      --border-color: #334155;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--light-bg);
+      color: var(--text-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Navbar */
+    nav {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(12px);
+      background: rgba(11, 15, 25, 0.85);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 70px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .logo span {
+      background: linear-gradient(135deg, #ff9933 0%, #38bdf8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.55rem 1.1rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.06);
+      color: #e2e8f0;
+      border: 1px solid var(--border-color);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: #64748b;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #ff9933 0%, #ea580c 100%);
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(234, 88, 12, 0.3);
+      border: none;
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.1);
+      transform: translateY(-1px);
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 5rem 0 3.5rem 0;
+      text-align: center;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 0.9rem;
+      border-radius: 9999px;
+      background: rgba(255, 153, 51, 0.1);
+      border: 1px solid rgba(255, 153, 51, 0.3);
+      color: #ff9933;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+
+    h1 {
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #ffffff 30%, #94a3b8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 720px;
+      margin: 0 auto 2.2rem auto;
+    }
+
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* Stats Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
+      margin: 3.5rem 0;
+    }
+
+    .stat-box {
+      background: var(--dark-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .stat-box:hover {
+      transform: translateY(-2px);
+      border-color: #475569;
+    }
+
+    .stat-box .number {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #38bdf8;
+    }
+
+    .stat-box .label {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-top: 0.25rem;
+    }
+
+    /* Interactive Explorer */
+    .explorer-card {
+      background: var(--dark-card);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 2rem;
+      margin-bottom: 4rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .card-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-subtitle {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .search-row {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .search-input {
+      flex: 1;
+      min-width: 260px;
+      background: #0f172a;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      color: #fff;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .search-input:focus {
+      border-color: #38bdf8;
+    }
+
+    .quick-chips {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+
+    .chip {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-color);
+      padding: 0.3rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      color: #cbd5e1;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .chip:hover {
+      background: rgba(56, 189, 248, 0.15);
+      border-color: #38bdf8;
+      color: #fff;
+    }
+
+    .code-output {
+      background: #090d16;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 1.25rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      color: #a5f3fc;
+      overflow-x: auto;
+      max-height: 340px;
+    }
+
+    /* Endpoints Grid */
+    .endpoints-section {
+      margin-bottom: 4rem;
+    }
+
+    .section-heading {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-desc {
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+    }
+
+    .endpoints-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .endpoint-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--dark-card);
+      border: 1px solid var(--border-color);
+      padding: 1rem 1.25rem;
+      border-radius: 8px;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.2s;
+    }
+
+    .endpoint-row:hover {
+      border-color: #38bdf8;
+    }
+
+    .endpoint-left {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .method-badge {
+      background: #0284c7;
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.75rem;
+      padding: 0.25rem 0.55rem;
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .endpoint-path {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      color: #f1f5f9;
+    }
+
+    .endpoint-desc {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 2.5rem 0;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    footer a {
+      color: #38bdf8;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    .gemini-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      color: #93c5fd;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="container nav-inner">
+      <a href="/" class="logo">
+        <span style="font-size: 1.5rem">🇮🇳</span>
+        <div>Indian Cities <span>API</span></div>
+      </a>
+      <div class="nav-links">
+        <a href="/docs" class="btn btn-primary">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+          Swagger UI
+        </a>
+        <a href="https://github.com/kalyangupta12/indian-cities-data" target="_blank" class="btn btn-secondary">
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <section class="hero">
+      <div class="pill">
+        <span>🇮🇳</span> Official LGD Dataset &bull; Zero Config REST API
+      </div>
+      <h1 class="gradient-text">Complete Indian Administrative & City Geodata API</h1>
+      <p>
+        High-performance, edge-cached REST API for all 36 States & UTs, 784 Districts, 7,092 Sub-districts (Tehsils), and 5,050+ Urban Local Bodies / Cities across India.
+      </p>
+      <div class="hero-actions">
+        <a href="/docs" class="btn btn-primary" style="padding: 0.8rem 1.6rem; font-size: 1rem;">
+          Open Swagger UI Documentation &rarr;
+        </a>
+        <a href="/api/cities?q=delhi" target="_blank" class="btn btn-secondary" style="padding: 0.8rem 1.6rem; font-size: 1rem;">
+          Try Sample City API
+        </a>
+      </div>
+    </section>
+
+    <div class="stats-grid">
+      <div class="stat-box">
+        <div class="number">36</div>
+        <div class="label">States & UTs</div>
+      </div>
+      <div class="stat-box">
+        <div class="number">784</div>
+        <div class="label">Districts</div>
+      </div>
+      <div class="stat-box">
+        <div class="number">7,092</div>
+        <div class="label">Sub-districts (Tehsils)</div>
+      </div>
+      <div class="stat-box">
+        <div class="number">5,050+</div>
+        <div class="label">Cities / Urban Local Bodies</div>
+      </div>
+    </div>
+
+    <!-- Live Test Console -->
+    <div class="explorer-card">
+      <h2 class="card-title">Live API Playground</h2>
+      <p class="card-subtitle">Search cities, districts, or tehsils across India in real time.</p>
+
+      <div class="quick-chips">
+        <span class="chip" onclick="runQuery('/api/cities?q=mumbai')">Cities: Mumbai</span>
+        <span class="chip" onclick="runQuery('/api/cities?q=bengaluru')">Cities: Bengaluru</span>
+        <span class="chip" onclick="runQuery('/api/districts?stateCode=18')">Assam Districts</span>
+        <span class="chip" onclick="runQuery('/api/states')">All States</span>
+        <span class="chip" onclick="runQuery('/api/search?q=moranhat')">Global Search: Moranhat</span>
+      </div>
+
+      <div class="search-row">
+        <input type="text" id="queryInput" class="search-input" value="/api/cities?q=mumbai" placeholder="Enter endpoint path...">
+        <button onclick="executeInput()" class="btn btn-primary">Fetch API Data</button>
+      </div>
+
+      <pre id="codeOutput" class="code-output">// Response data will appear here...</pre>
+    </div>
+
+    <!-- Endpoints List -->
+    <section class="endpoints-section">
+      <h2 class="section-heading">Available Endpoints</h2>
+      <p class="section-desc">All endpoints return standard JSON with pagination and support case-insensitive keyword search.</p>
+
+      <div class="endpoints-list">
+        <a href="/api/states" target="_blank" class="endpoint-row">
+          <div class="endpoint-left">
+            <span class="method-badge">GET</span>
+            <span class="endpoint-path">/api/states</span>
+          </div>
+          <span class="endpoint-desc">List all 36 States and Union Territories</span>
+        </a>
+        <a href="/api/districts?stateCode=18" target="_blank" class="endpoint-row">
+          <div class="endpoint-left">
+            <span class="method-badge">GET</span>
+            <span class="endpoint-path">/api/districts?stateCode=18</span>
+          </div>
+          <span class="endpoint-desc">Filter 784 districts by state code or name</span>
+        </a>
+        <a href="/api/subdistricts?districtCode=310" target="_blank" class="endpoint-row">
+          <div class="endpoint-left">
+            <span class="method-badge">GET</span>
+            <span class="endpoint-path">/api/subdistricts?districtCode=310</span>
+          </div>
+          <span class="endpoint-desc">List 7,092 subdistricts (tehsils/talukas)</span>
+        </a>
+        <a href="/api/cities?q=delhi" target="_blank" class="endpoint-row">
+          <div class="endpoint-left">
+            <span class="method-badge">GET</span>
+            <span class="endpoint-path">/api/cities?q=delhi</span>
+          </div>
+          <span class="endpoint-desc">Search 5,050+ urban local bodies / cities</span>
+        </a>
+        <a href="/api/search?q=moranhat" target="_blank" class="endpoint-row">
+          <div class="endpoint-left">
+            <span class="method-badge">GET</span>
+            <span class="endpoint-path">/api/search?q=moranhat</span>
+          </div>
+          <span class="endpoint-desc">Unified cross-collection search</span>
+        </a>
+        <a href="/api/metadata" target="_blank" class="endpoint-row">
+          <div class="endpoint-left">
+            <span class="method-badge">GET</span>
+            <span class="endpoint-path">/api/metadata</span>
+          </div>
+          <span class="endpoint-desc">Dataset synchronization metadata and counts</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>
+        Indian Cities & Administrative Data API &bull; Open Source under MIT License &bull;
+        Data derived from <a href="https://lgdirectory.gov.in" target="_blank" rel="noopener">LGD (Local Government Directory)</a>
+      </p>
+      <p style="margin-top: 0.5rem;">
+        Developed by <a href="https://github.com/kalyangupta12" target="_blank">Kalyan Gupta</a>
+        <span class="gemini-badge">&bull; Co-authored with Google Gemini ✦</span>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    async function runQuery(url) {
+      document.getElementById('queryInput').value = url;
+      executeInput();
+    }
+
+    async function executeInput() {
+      const url = document.getElementById('queryInput').value.trim();
+      const output = document.getElementById('codeOutput');
+      output.textContent = "Loading data from " + url + "...";
+      try {
+        const res = await fetch(url);
+        const data = await res.json();
+        output.textContent = JSON.stringify(data, null, 2);
+      } catch (err) {
+        output.textContent = "Error: " + err.message;
+      }
+    }
+
+    // Auto-run default query on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      executeInput();
+    });
+  </script>
+</body>
+</html>

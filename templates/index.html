@@ -1,0 +1,2102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LifeDrop | Blood Donation & Request Portal</title>
+<style>
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+html {
+scroll-behavior: smooth;
+}
+body {
+font-family: Arial, Helvetica, sans-serif;
+background: #ffffff;
+color: #1f2937;
+line-height: 1.6;
+}
+button,
+input,
+select,
+textarea {
+font-family: inherit;
+}
+a {
+text-decoration: none;
+}
+.navbar {
+position: sticky;
+top: 0;
+z-index: 1000;
+height: 72px;
+background: #ffffff;
+border-bottom: 1px solid #eeeeee;
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 0 5%;
+}
+.logo {
+display: flex;
+align-items: center;
+gap: 8px;
+color: #dc2626;
+font-size: 22px;
+font-weight: 800;
+}
+.logo-icon {
+font-size: 28px;
+}
+.nav-links {
+display: flex;
+align-items: center;
+gap: 28px;
+}
+.nav-links a {
+color: #374151;
+font-size: 14px;
+font-weight: 600;
+transition: 0.3s;
+}
+.nav-links a:hover {
+color: #dc2626;
+}
+.nav-buttons {
+display: flex;
+align-items: center;
+gap: 10px;
+}
+.login-btn {
+background: transparent;
+border: none;
+color: #374151;
+cursor: pointer;
+font-weight: 600;
+padding: 10px 15px;
+}
+.register-btn {
+border: none;
+background: #dc2626;
+color: white;
+padding: 10px 18px;
+border-radius: 7px;
+cursor: pointer;
+font-weight: 600;
+}
+.register-btn:hover {
+background: #b91c1c;
+}
+.menu-btn {
+display: none;
+border: none;
+background: transparent;
+font-size: 27px;
+cursor: pointer;
+}
+.hero {
+min-height: 600px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 60px;
+padding: 80px 7%;
+background:
+radial-gradient(circle at 90% 20%, #fee2e2, transparent 30%),
+linear-gradient(135deg, #fff7f7, #ffffff);
+}
+.hero-content {
+max-width: 650px;
+}
+.hero-badge {
+display: inline-block;
+background: #fee2e2;
+color: #dc2626;
+padding: 8px 15px;
+border-radius: 30px;
+font-size: 13px;
+font-weight: 700;
+margin-bottom: 20px;
+}
+.hero h1 {
+font-size: clamp(42px, 6vw, 68px);
+line-height: 1.05;
+letter-spacing: -2px;
+margin-bottom: 22px;
+}
+.hero h1 span {
+color: #dc2626;
+}
+.hero-description {
+color: #6b7280;
+font-size: 17px;
+max-width: 580px;
+margin-bottom: 30px;
+}
+.hero-buttons {
+display: flex;
+gap: 14px;
+flex-wrap: wrap;
+}
+.primary-btn,
+.secondary-btn {
+padding: 14px 22px;
+border-radius: 8px;
+font-weight: 700;
+font-size: 14px;
+cursor: pointer;
+transition: 0.3s;
+}
+.primary-btn {
+border: none;
+background: #dc2626;
+color: white;
+}
+.primary-btn:hover {
+background: #b91c1c;
+transform: translateY(-2px);
+}
+.secondary-btn {
+border: 1px solid #d1d5db;
+background: white;
+color: #1f2937;
+}
+.secondary-btn:hover {
+border-color: #dc2626;
+color: #dc2626;
+}
+.hero-card {
+width: 350px;
+padding: 40px;
+background: white;
+border-radius: 20px;
+box-shadow: 0 20px 50px rgba(0, 0, 0, 0.10);
+text-align: center;
+}
+.blood-circle {
+width: 110px;
+height: 110px;
+margin: auto;
+margin-bottom: 20px;
+border-radius: 50%;
+background: #fef2f2;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 52px;
+}
+.hero-card h3 {
+font-size: 23px;
+margin-bottom: 10px;
+}
+.hero-card p {
+color: #6b7280;
+font-size: 14px;
+}
+.hero-card-stats {
+display: flex;
+justify-content: space-around;
+margin-top: 25px;
+padding-top: 20px;
+border-top: 1px solid #eeeeee;
+}
+.hero-card-stats strong {
+display: block;
+color: #dc2626;
+font-size: 20px;
+}
+.hero-card-stats span {
+color: #6b7280;
+font-size: 12px;
+}
+.statistics {
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+gap: 20px;
+padding: 40px 7%;
+background: white;
+}
+.stat-card {
+display: flex;
+align-items: center;
+gap: 15px;
+padding: 22px;
+border: 1px solid #e5e7eb;
+border-radius: 12px;
+}
+.stat-icon {
+width: 50px;
+height: 50px;
+border-radius: 10px;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 23px;
+}
+.red-bg {
+background: #fee2e2;
+}
+.blue-bg {
+background: #dbeafe;
+}
+.green-bg {
+background: #dcfce7;
+}
+.orange-bg {
+background: #ffedd5;
+}
+.stat-card h3 {
+font-size: 22px;
+}
+.stat-card p {
+color: #6b7280;
+font-size: 12px;
+}
+section {
+scroll-margin-top: 80px;
+}
+.section {
+padding: 90px 7%;
+}
+.section-header {
+text-align: center;
+max-width: 700px;
+margin: 0 auto 45px;
+}
+.section-label {
+color: #dc2626;
+font-size: 12px;
+font-weight: 800;
+letter-spacing: 2px;
+}
+.section-header h2 {
+font-size: 36px;
+margin: 8px 0;
+}
+.section-header p {
+color: #6b7280;
+}
+.find-section {
+background: #fafafa;
+}
+.search-box {
+max-width: 1000px;
+margin: auto;
+background: white;
+padding: 30px;
+border-radius: 15px;
+box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+display: grid;
+grid-template-columns: 1fr 1fr auto;
+gap: 20px;
+align-items: end;
+}
+.form-group {
+display: flex;
+flex-direction: column;
+gap: 7px;
+}
+.form-group label {
+font-size: 13px;
+font-weight: 700;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+width: 100%;
+padding: 13px;
+border: 1px solid #d1d5db;
+border-radius: 7px;
+outline: none;
+background: white;
+font-size: 14px;
+}
+.form-group textarea {
+min-height: 100px;
+resize: vertical;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+border-color: #dc2626;
+box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.08);
+}
+.search-button {
+padding: 13px 22px;
+border: none;
+border-radius: 7px;
+background: #dc2626;
+color: white;
+font-weight: 700;
+cursor: pointer;
+}
+.search-button:hover {
+background: #b91c1c;
+}
+.search-result {
+max-width: 1000px;
+margin: 25px auto 0;
+}
+.result-card {
+background: white;
+padding: 20px;
+border-radius: 10px;
+border: 1px solid #e5e7eb;
+margin-bottom: 12px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 20px;
+}
+.result-card h4 {
+margin-bottom: 5px;
+}
+.result-card p {
+color: #6b7280;
+font-size: 13px;
+}
+.available {
+color: #16a34a;
+font-weight: 700;
+font-size: 13px;
+}
+.steps {
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+gap: 25px;
+}
+.step-card {
+text-align: center;
+padding: 30px 20px;
+border: 1px solid #e5e7eb;
+border-radius: 15px;
+background: white;
+}
+.step-number {
+color: #d1d5db;
+font-size: 12px;
+font-weight: 800;
+}
+.step-icon {
+width: 65px;
+height: 65px;
+margin: 15px auto;
+border-radius: 50%;
+background: #fef2f2;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 28px;
+}
+.step-card h3 {
+margin-bottom: 8px;
+}
+.step-card p {
+color: #6b7280;
+font-size: 13px;
+}
+.request-section {
+background: #fafafa;
+}
+.request-form {
+max-width: 900px;
+margin: auto;
+background: white;
+padding: 35px;
+border-radius: 15px;
+box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+.form-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 20px;
+}
+.full-width {
+grid-column: 1 / -1;
+}
+.urgency-options {
+display: flex;
+gap: 10px;
+flex-wrap: wrap;
+}
+.urgency-option {
+flex: 1;
+min-width: 100px;
+}
+.urgency-option input {
+display: none;
+}
+.urgency-option label {
+display: block;
+padding: 12px;
+text-align: center;
+border: 1px solid #d1d5db;
+border-radius: 7px;
+cursor: pointer;
+font-size: 13px;
+font-weight: 600;
+}
+.urgency-option input:checked + label {
+border-color: #dc2626;
+background: #fef2f2;
+color: #dc2626;
+}
+.submit-btn {
+width: 100%;
+padding: 14px;
+border: none;
+border-radius: 8px;
+background: #dc2626;
+color: white;
+font-size: 15px;
+font-weight: 700;
+cursor: pointer;
+}
+.submit-btn:hover {
+background: #b91c1c;
+}
+.form-message {
+display: none;
+margin-top: 20px;
+padding: 15px;
+border-radius: 8px;
+text-align: center;
+font-size: 14px;
+}
+.success-message {
+display: block;
+background: #f0fdf4;
+border: 1px solid #bbf7d0;
+color: #166534;
+}
+.error-message {
+display: block;
+background: #fef2f2;
+border: 1px solid #fecaca;
+color: #991b1b;
+}
+.donor-section {
+background: white;
+}
+.donor-container {
+max-width: 900px;
+margin: auto;
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 30px;
+}
+.donor-info {
+padding: 30px;
+border-radius: 15px;
+background: #fef2f2;
+}
+.donor-info h3 {
+font-size: 25px;
+margin-bottom: 15px;
+}
+.donor-info p {
+color: #6b7280;
+font-size: 14px;
+margin-bottom: 20px;
+}
+.donor-benefits {
+list-style: none;
+}
+.donor-benefits li {
+margin-bottom: 12px;
+font-size: 14px;
+font-weight: 600;
+}
+.donor-form {
+padding: 30px;
+border: 1px solid #e5e7eb;
+border-radius: 15px;
+}
+.emergency {
+margin: 20px 7% 90px;
+padding: 50px;
+border-radius: 18px;
+background: linear-gradient(120deg, #b91c1c, #ef4444);
+color: white;
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 30px;
+}
+.emergency h2 {
+font-size: 32px;
+margin: 5px 0;
+}
+.emergency p {
+color: #fee2e2;
+max-width: 650px;
+}
+.emergency-button {
+background: white;
+color: #dc2626;
+padding: 14px 22px;
+border-radius: 8px;
+border: none;
+font-weight: 800;
+cursor: pointer;
+white-space: nowrap;
+}
+.modal {
+display: none;
+position: fixed;
+z-index: 2000;
+inset: 0;
+background: rgba(0, 0, 0, 0.55);
+align-items: center;
+justify-content: center;
+padding: 20px;
+}
+.modal.active {
+display: flex;
+}
+.modal-box {
+width: 100%;
+max-width: 430px;
+background: white;
+border-radius: 15px;
+padding: 30px;
+position: relative;
+}
+.modal-close {
+position: absolute;
+right: 18px;
+top: 15px;
+border: none;
+background: none;
+font-size: 25px;
+cursor: pointer;
+color: #6b7280;
+}
+.modal-box h2 {
+margin-bottom: 20px;
+}
+.modal-form {
+display: flex;
+flex-direction: column;
+gap: 15px;
+}
+.modal-form button {
+padding: 13px;
+border: none;
+border-radius: 7px;
+background: #dc2626;
+color: white;
+font-weight: 700;
+cursor: pointer;
+}
+.modal-switch {
+text-align: center;
+font-size: 13px;
+color: #6b7280;
+}
+.modal-switch span {
+color: #dc2626;
+cursor: pointer;
+font-weight: 700;
+}
+footer {
+background: #171717;
+color: white;
+padding: 60px 7% 20px;
+}
+.footer-content {
+display: grid;
+grid-template-columns: 2fr 1fr 1fr;
+gap: 60px;
+padding-bottom: 40px;
+}
+.footer-brand p {
+max-width: 350px;
+color: #9ca3af;
+margin-top: 15px;
+font-size: 13px;
+}
+.footer-links {
+display: flex;
+flex-direction: column;
+gap: 9px;
+}
+.footer-links h4 {
+margin-bottom: 7px;
+}
+.footer-links a,
+.footer-links p {
+color: #9ca3af;
+font-size: 13px;
+}
+.footer-links a:hover {
+color: white;
+}
+.copyright {
+border-top: 1px solid #333;
+padding-top: 20px;
+text-align: center;
+color: #737373;
+font-size: 12px;
+}
+.lifedrop-hidden { display: none !important; }
+.management-section { background: #fafafa; }
+.management-panel { max-width: 1100px; margin: auto; background: #fff; padding: 25px; border: 1px solid #e5e7eb; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,.04); overflow-x: auto; }
+.management-toolbar { display: flex; justify-content: space-between; align-items: center; gap: 15px; flex-wrap: wrap; margin-bottom: 20px; }
+.management-toolbar p { color: #6b7280; font-size: 13px; }
+.management-button { border: 0; border-radius: 7px; background: #dc2626; color: #fff; padding: 10px 15px; font-weight: 700; cursor: pointer; }
+.request-table { width: 100%; border-collapse: collapse; min-width: 850px; font-size: 13px; }
+.request-table th, .request-table td { text-align: left; padding: 13px 12px; border-bottom: 1px solid #e5e7eb; vertical-align: top; }
+.request-table th { background: #f9fafb; color: #374151; font-size: 12px; }
+.request-table td { overflow-wrap: anywhere; }
+.status-select { padding: 8px; border: 1px solid #d1d5db; border-radius: 6px; background: #fff; }
+.management-message { margin: 12px 0; font-size: 14px; }
+.management-message.error { color: #b91c1c; }
+.management-message.success { color: #166534; }
+.location-autocomplete { position: relative; }
+.location-suggestions {
+display: none; position: absolute; top: calc(100% + 3px); left: 0; right: 0;
+z-index: 1500; max-height: 240px; overflow-y: auto; background: #fff;
+border: 1px solid #d1d5db; border-radius: 8px;
+box-shadow: 0 12px 28px rgba(0,0,0,.12);
+}
+.location-suggestions.show { display: block; }
+.location-suggestion { display: block; width: 100%; text-align: left; padding: 11px 13px;
+border: 0; border-bottom: 1px solid #f3f4f6; background: #fff; cursor: pointer; color: #1f2937; }
+.location-suggestion:hover, .location-suggestion:focus { background: #fef2f2; outline: none; }
+.location-suggestion strong { display: block; font-size: 14px; }
+.location-suggestion small { display: block; color: #6b7280; font-size: 12px; margin-top: 2px; }
+.location-suggestion-hint { padding: 12px; color: #6b7280; font-size: 12px; }
+@media (max-width: 1000px) {
+.nav-links {
+gap: 15px;
+}
+.hero {
+padding: 60px 5%;
+}
+.statistics {
+padding: 30px 5%;
+}
+.section {
+padding: 70px 5%;
+}
+.steps {
+grid-template-columns: repeat(2, 1fr);
+}
+.statistics {
+grid-template-columns: repeat(2, 1fr);
+}
+}
+@media (max-width: 800px) {
+.navbar {
+padding: 0 5%;
+}
+.nav-links {
+display: none;
+position: absolute;
+top: 72px;
+left: 0;
+width: 100%;
+background: white;
+flex-direction: column;
+align-items: flex-start;
+padding: 20px 5%;
+border-bottom: 1px solid #eeeeee;
+}
+.nav-links.show {
+display: flex;
+}
+.nav-buttons {
+display: none;
+}
+.menu-btn {
+display: block;
+}
+.hero {
+flex-direction: column;
+text-align: center;
+padding: 60px 5%;
+}
+.hero-buttons {
+justify-content: center;
+}
+.hero-card {
+width: 100%;
+max-width: 400px;
+}
+.search-box {
+grid-template-columns: 1fr;
+}
+.donor-container {
+grid-template-columns: 1fr;
+}
+.emergency {
+margin-left: 5%;
+margin-right: 5%;
+flex-direction: column;
+text-align: center;
+}
+.footer-content {
+grid-template-columns: 1fr 1fr;
+}
+}
+@media (max-width: 600px) {
+.hero h1 {
+font-size: 42px;
+}
+.statistics {
+grid-template-columns: 1fr;
+}
+.steps {
+grid-template-columns: 1fr;
+}
+.form-grid {
+grid-template-columns: 1fr;
+}
+.full-width {
+grid-column: auto;
+}
+.footer-content {
+grid-template-columns: 1fr;
+}
+.emergency {
+padding: 35px 25px;
+}
+.section-header h2 {
+font-size: 29px;
+}
+.request-form {
+padding: 22px;
+}
+.result-card {
+flex-direction: column;
+align-items: flex-start;
+}
+}
+</style>
+</head>
+<body>
+<header class="navbar">
+<a href="#home" class="logo">
+<span class="logo-icon">🩸</span>
+<span>LifeDrop</span>
+</a>
+<nav class="nav-links" id="navLinks">
+<a href="#home">Home</a>
+<a href="#find-blood">Find Blood</a>
+<a href="#request-blood">Request Blood</a>
+<a href="#manage-requests" id="manageRequestsLink" class="lifedrop-hidden">Manage Requests</a>
+<a href="#donor">Become a Donor</a>
+</nav>
+<div class="nav-buttons">
+<button class="login-btn" onclick="openModal('login')">
+Login
+</button>
+<button class="register-btn" onclick="openModal('register')">
+Register
+</button>
+</div>
+<button class="menu-btn" onclick="toggleMenu()">
+☰
+</button>
+</header>
+<main>
+<section class="hero" id="home">
+<div class="hero-content">
+<div class="hero-badge">
+🩸 Every Drop Can Save a Life
+</div>
+<h1>
+Donate Blood.
+<span>Save Lives.</span>
+</h1>
+<p class="hero-description">
+LifeDrop connects blood donors with people who need
+blood. Find donors, request blood, and help save lives
+in your community.
+</p>
+<div class="hero-buttons">
+<button
+class="primary-btn"
+onclick="scrollToSection('request-blood')">
+🩸 Request Blood
+</button>
+<button
+class="secondary-btn"
+onclick="scrollToSection('donor')">
+❤️ Become a Donor
+</button>
+</div>
+</div>
+<div class="hero-card">
+<div class="blood-circle">
+🩸
+</div>
+<h3>
+Give Blood. Give Life.
+</h3>
+<p>
+Your donation can make a meaningful difference
+for someone in need.
+</p>
+<div class="hero-card-stats">
+<div>
+<strong id="heroDonorCount">0</strong>
+<span>Donors</span>
+</div>
+<div>
+<strong id="heroRequestCount">0</strong>
+<span>Requests</span>
+</div>
+</div>
+</div>
+</section>
+<section class="statistics">
+<div class="stat-card">
+<div class="stat-icon red-bg">
+🩸
+</div>
+<div>
+<h3 id="statTotalDonors">0</h3>
+<p>Registered Donors</p>
+</div>
+</div>
+<div class="stat-card">
+<div class="stat-icon blue-bg">
+🏥
+</div>
+<div>
+<h3 id="statTotalRequests">0</h3>
+<p>Total Blood Requests</p>
+</div>
+</div>
+<div class="stat-card">
+<div class="stat-icon green-bg">
+❤️
+</div>
+<div>
+<h3 id="statFulfilledRequests">0</h3>
+<p>Fulfilled Requests</p>
+</div>
+</div>
+<div class="stat-card">
+<div class="stat-icon orange-bg">
+🚨
+</div>
+<div>
+<h3 id="statPendingRequests">0</h3>
+<p>Pending Requests</p>
+</div>
+</div>
+</section>
+<section class="section find-section" id="find-blood">
+<div class="section-header">
+<span class="section-label">
+FIND BLOOD
+</span>
+<h2>
+Find Blood Near You
+</h2>
+<p>
+Search for blood availability using blood group
+and location.
+</p>
+</div>
+<div class="search-box">
+<div class="form-group">
+<label for="searchBloodGroup">
+Blood Group
+</label>
+<select id="searchBloodGroup">
+<option value="">
+Select Blood Group
+</option>
+<option value="O+">O+</option>
+<option value="O-">O-</option>
+<option value="A+">A+</option>
+<option value="A-">A-</option>
+<option value="B+">B+</option>
+<option value="B-">B-</option>
+<option value="AB+">AB+</option>
+<option value="AB-">AB-</option>
+</select>
+</div>
+<div class="form-group location-filter">
+<label for="searchState">State / Union Territory *</label>
+<select id="searchState" required>
+<option value="">Select State / UT</option>
+</select>
+</div>
+<div class="form-group location-filter">
+<label for="searchDistrict">District</label>
+<select id="searchDistrict" disabled>
+<option value="">All Districts</option>
+</select>
+</div>
+<div class="form-group location-filter">
+<label for="searchSubdistrict">Mandal / Sub-district (optional)</label>
+<select id="searchSubdistrict" disabled>
+<option value="">All Mandals / Sub-districts</option>
+</select>
+</div>
+<button
+class="search-button"
+onclick="searchBlood()">
+🔍 Search
+</button>
+</div>
+<div
+class="search-result"
+id="searchResult">
+</div>
+</section>
+<section class="section">
+<div class="section-header">
+<span class="section-label">
+HOW IT WORKS
+</span>
+<h2>
+Saving Lives Made Simple
+</h2>
+<p>
+Our platform makes it easy to connect blood donors
+with people who need blood.
+</p>
+</div>
+<div class="steps">
+<div class="step-card">
+<span class="step-number">
+01
+</span>
+<div class="step-icon">
+👤
+</div>
+<h3>
+Register
+</h3>
+<p>
+Create an account as a donor or blood requester.
+</p>
+</div>
+<div class="step-card">
+<span class="step-number">
+02
+</span>
+<div class="step-icon">
+📝
+</div>
+<h3>
+Request
+</h3>
+<p>
+Submit your blood requirement with necessary details.
+</p>
+</div>
+<div class="step-card">
+<span class="step-number">
+03
+</span>
+<div class="step-icon">
+🔍
+</div>
+<h3>
+Get Matched
+</h3>
+<p>
+Find compatible donors based on blood group and location.
+</p>
+</div>
+<div class="step-card">
+<span class="step-number">
+04
+</span>
+<div class="step-icon">
+❤️
+</div>
+<h3>
+Save a Life
+</h3>
+<p>
+Connect with donors and complete the donation process.
+</p>
+</div>
+</div>
+</section>
+<section
+class="section request-section"
+id="request-blood">
+<div class="section-header">
+<span class="section-label">
+BLOOD REQUEST
+</span>
+<h2>
+Request Blood
+</h2>
+<p>
+Enter the patient's information and blood requirement.
+</p>
+</div>
+<form
+class="request-form"
+id="bloodRequestForm">
+<div class="form-grid">
+<div class="form-group">
+<label for="patientName">
+Patient Name *
+</label>
+<input
+type="text"
+id="patientName"
+placeholder="Enter patient name"
+required>
+</div>
+<div class="form-group">
+<label for="requesterPhone">
+Contact Number *
+</label>
+<input
+type="tel"
+id="requesterPhone"
+placeholder="Enter contact number"
+required>
+</div>
+<div class="form-group">
+<label for="requestBloodGroup">
+Blood Group *
+</label>
+<select
+id="requestBloodGroup"
+required>
+<option value="">
+Select Blood Group
+</option>
+<option>O+</option>
+<option>O-</option>
+<option>A+</option>
+<option>A-</option>
+<option>B+</option>
+<option>B-</option>
+<option>AB+</option>
+<option>AB-</option>
+</select>
+</div>
+<div class="form-group">
+<label for="units">
+Units Required *
+</label>
+<input
+type="number"
+id="units"
+min="1"
+max="20"
+placeholder="Example: 2"
+required>
+</div>
+<div class="form-group">
+<label for="hospital">
+Hospital Name *
+</label>
+<input
+type="text"
+id="hospital"
+placeholder="Enter hospital name"
+required>
+</div>
+<div class="form-group location-filter">
+<label for="requestState">State / Union Territory *</label>
+<select id="requestState" required>
+<option value="">Select State / UT</option>
+</select>
+</div>
+<div class="form-group location-filter">
+<label for="requestDistrict">District</label>
+<select id="requestDistrict" disabled>
+<option value="">All Districts</option>
+</select>
+</div>
+<div class="form-group location-filter">
+<label for="requestSubdistrict">Mandal / Sub-district (optional)</label>
+<select id="requestSubdistrict" disabled>
+<option value="">All Mandals / Sub-districts</option>
+</select>
+</div>
+<div class="form-group">
+<label for="requiredDate">
+Required Date *
+</label>
+<input
+type="date"
+id="requiredDate"
+required>
+</div>
+<div class="form-group">
+<label>
+Urgency *
+</label>
+<div class="urgency-options">
+<div class="urgency-option">
+<input
+type="radio"
+id="normal"
+name="urgency"
+value="Normal"
+checked>
+<label for="normal">
+Normal
+</label>
+</div>
+<div class="urgency-option">
+<input
+type="radio"
+id="urgent"
+name="urgency"
+value="Urgent">
+<label for="urgent">
+Urgent
+</label>
+</div>
+<div class="urgency-option">
+<input
+type="radio"
+id="emergency"
+name="urgency"
+value="Emergency">
+<label for="emergency">
+Emergency
+</label>
+</div>
+</div>
+</div>
+<div class="form-group full-width">
+<label for="reason">
+Additional Information
+</label>
+<textarea
+id="reason"
+placeholder="Enter any additional information..."></textarea>
+</div>
+<div class="full-width">
+<button
+type="submit"
+class="submit-btn">
+🩸 Submit Blood Request
+</button>
+</div>
+</div>
+<div
+id="requestMessage"
+class="form-message">
+</div>
+</form>
+</section>
+<section class="section management-section lifedrop-hidden" id="manage-requests">
+<div class="section-header">
+<span class="section-label">REQUEST MANAGEMENT</span>
+<h2>Manage Blood Requests</h2>
+<p>Review submitted requests and update their status.</p>
+</div>
+<div class="management-panel">
+<div class="management-toolbar">
+<p>Requests are loaded from the LifeDrop database.</p>
+<button type="button" class="management-button" onclick="loadBloodRequests()">↻ Refresh Requests</button>
+</div>
+<div id="managementMessage" class="management-message" role="status"></div>
+<div id="bloodRequestsTableWrap">
+<p>Loading blood requests...</p>
+</div>
+</div>
+</section>
+<section
+class="section donor-section"
+id="donor">
+<div class="section-header">
+<span class="section-label">
+BECOME A DONOR
+</span>
+<h2>
+Become a Blood Donor
+</h2>
+<p>
+Register yourself as a donor and help someone in need.
+</p>
+</div>
+<div class="donor-container">
+<div class="donor-info">
+<h3>
+Be Someone's Hero ❤️
+</h3>
+<p>
+Blood cannot be manufactured. It can only come
+from generous donors like you.
+</p>
+<ul class="donor-benefits">
+<li>
+✓ Help people in emergencies
+</li>
+<li>
+✓ Connect with nearby blood requests
+</li>
+<li>
+✓ Maintain your donation history
+</li>
+<li>
+✓ Make a difference in your community
+</li>
+</ul>
+</div>
+<form
+class="donor-form"
+id="donorForm">
+<div class="form-group">
+<label for="donorName">
+Full Name *
+</label>
+<input
+type="text"
+id="donorName"
+placeholder="Enter your full name"
+required>
+</div>
+<br>
+<div class="form-group">
+<label for="donorEmail">
+Email Address (Optional)
+</label>
+<input
+type="email"
+id="donorEmail"
+placeholder="Enter your email">
+</div>
+<br>
+<div class="form-group">
+<label for="donorPhone">
+Phone Number *
+</label>
+<input
+type="tel"
+id="donorPhone"
+placeholder="Enter 10-digit mobile number"
+required
+minlength="10"
+maxlength="10"
+pattern="[0-9]{10}"
+inputmode="numeric"
+title="Enter a valid 10-digit mobile number">
+</div>
+<br>
+<div class="form-group">
+<label for="donorPassword">Password *</label>
+<input
+type="password"
+id="donorPassword"
+name="password"
+placeholder="Create a password"
+minlength="8"
+required>
+</div>
+<br>
+<div class="form-group">
+<label for="donorBloodGroup">
+Blood Group *
+</label>
+<select
+id="donorBloodGroup"
+required>
+<option value="">
+Select Blood Group
+</option>
+<option>O+</option>
+<option>O-</option>
+<option>A+</option>
+<option>A-</option>
+<option>B+</option>
+<option>B-</option>
+<option>AB+</option>
+<option>AB-</option>
+</select>
+</div>
+<br>
+<div class="form-group location-filter">
+<label for="donorState">State / Union Territory *</label>
+<select id="donorState" required>
+<option value="">Select State / UT</option>
+</select>
+</div>
+<div class="form-group location-filter">
+<label for="donorDistrict">District</label>
+<select id="donorDistrict" disabled>
+<option value="">All Districts</option>
+</select>
+</div>
+<div class="form-group location-filter">
+<label for="donorSubdistrict">Mandal / Sub-district (optional)</label>
+<select id="donorSubdistrict" disabled>
+<option value="">All Mandals / Sub-districts</option>
+</select>
+</div>
+<br>
+<button
+type="submit"
+class="submit-btn">
+❤️ Register as Donor
+</button>
+<div
+id="donorMessage"
+class="form-message">
+</div>
+</form>
+</div>
+</section>
+<section class="emergency">
+<div>
+<span
+class="section-label"
+style="color:#fecaca;">
+EMERGENCY
+</span>
+<h2>
+Need Blood Urgently?
+</h2>
+<p>
+Submit an emergency request and connect with
+potential donors in your area.
+</p>
+</div>
+<button
+class="emergency-button"
+onclick="scrollToSection('request-blood')">
+Request Blood Now →
+</button>
+</section>
+</main>
+<footer>
+<div class="footer-content">
+<div class="footer-brand">
+<div class="logo">
+<span class="logo-icon">
+🩸
+</span>
+<span style="color:white;">
+LifeDrop
+</span>
+</div>
+<p>
+A blood donation and request portal designed to
+connect donors with people who need blood.
+</p>
+</div>
+<div class="footer-links">
+<h4>
+Quick Links
+</h4>
+<a href="#home">
+Home
+</a>
+<a href="#find-blood">
+Find Blood
+</a>
+<a href="#request-blood">
+Request Blood
+</a>
+<a href="#donor">
+Become a Donor
+</a>
+</div>
+<div class="footer-links">
+<h4>
+Contact
+</h4>
+</div>
+</div>
+<div class="copyright">
+LifeDrop — Blood Donation & Request Portal
+</div>
+</footer>
+<div
+class="modal"
+id="authModal">
+<div class="modal-box">
+<button
+class="modal-close"
+onclick="closeModal()">
+×
+</button>
+<h2 id="modalTitle">
+Login
+</h2>
+<form
+class="modal-form"
+id="authForm">
+<div
+class="form-group"
+id="nameField"
+style="display:none;">
+<label>
+Full Name
+</label>
+<input
+type="text"
+id="authName"
+placeholder="Enter your name">
+</div>
+<div class="form-group">
+<label id="authIdentifierLabel" for="authEmail">Mobile Number or Email</label>
+<input
+type="text"
+id="authEmail"
+name="identifier"
+placeholder="Enter mobile number or email"
+autocomplete="username"
+required>
+</div>
+<div class="form-group" id="authPhoneField" style="display:none;">
+<label for="authPhone">Mobile Number</label>
+<input
+type="tel"
+id="authPhone"
+name="phone"
+placeholder="10-digit mobile number"
+maxlength="10"
+inputmode="numeric"
+pattern="[0-9]{10}"
+autocomplete="tel">
+</div>
+<div class="form-group">
+<label for="authPassword">
+Password
+</label>
+<input
+type="password"
+id="authPassword"
+placeholder="Enter your password"
+required>
+</div>
+<div id="authMessage" class="form-message" role="status" aria-live="polite"></div>
+<button type="submit" id="authSubmitButton">
+Login
+</button>
+</form>
+<br>
+<div class="modal-switch">
+<span id="switchText">
+Don't have an account?
+</span>
+<span
+onclick="switchAuth()"
+id="switchButton">
+Register
+</span>
+</div>
+</div>
+</div>
+<script>
+// Load live dashboard counts from Flask/MySQL.
+async function loadDashboardStats() {
+try {
+const response = await fetch("/api/dashboard-stats");
+const data = await response.json();
+if (!response.ok) throw new Error(data.message || "Unable to load dashboard statistics.");
+document.getElementById("heroDonorCount").textContent = data.total_donors;
+document.getElementById("heroRequestCount").textContent = data.total_requests;
+document.getElementById("statTotalDonors").textContent = data.total_donors;
+document.getElementById("statTotalRequests").textContent = data.total_requests;
+document.getElementById("statFulfilledRequests").textContent = data.fulfilled_requests;
+document.getElementById("statPendingRequests").textContent = data.pending_requests;
+} catch (error) {
+console.error("Dashboard statistics error:", error);
+}
+}
+let lifeDropCurrentUser = null;
+async function loadBloodRequests() {
+const wrap = document.getElementById("bloodRequestsTableWrap");
+const message = document.getElementById("managementMessage");
+if (!wrap || !message) return;
+if (!lifeDropCurrentUser || lifeDropCurrentUser.role !== "admin") {
+wrap.innerHTML = "<p>Administrator login is required to manage blood requests.</p>";
+message.textContent = "";
+return;
+}
+wrap.innerHTML = "<p>Loading blood requests...</p>";
+message.textContent = "";
+message.className = "management-message";
+try {
+const response = await fetch("/api/blood-requests", { credentials: "same-origin" });
+const data = await response.json();
+if (!response.ok) throw new Error(data.message || "Unable to load blood requests.");
+if (!data.requests || data.requests.length === 0) {
+wrap.innerHTML = "<p>No blood requests have been submitted yet.</p>";
+return;
+}
+const rows = data.requests.map(item => `
+<tr>
+<td>#${escapeHTML(item.request_id)}</td>
+<td>${escapeHTML(item.patient_name || "Not provided")}</td>
+<td>${escapeHTML(item.blood_group)}</td>
+<td>${escapeHTML(item.city)}<br>${escapeHTML(item.hospital_name || "Hospital not provided")}</td>
+<td>${escapeHTML(item.contact_phone)}</td>
+<td>${escapeHTML(item.units_required)}</td>
+<td>${escapeHTML(item.required_date || "Not specified")}</td>
+<td>${escapeHTML(item.urgency || "Normal")}</td>
+<td>${escapeHTML(item.reason || "—")}</td>
+<td>
+<select class="status-select" aria-label="Status for request ${escapeHTML(item.request_id)}" onchange="updateRequestStatus(${Number(item.request_id)}, this.value)">
+${["Pending", "Fulfilled", "Cancelled"].map(status => `<option value="${status}" ${item.status === status ? "selected" : ""}>${status}</option>`).join("")}
+</select>
+</td>
+</tr>
+`).join("");
+wrap.innerHTML = `
+<table class="request-table">
+<thead><tr>
+<th>ID</th><th>Patient</th><th>Blood Group</th><th>City / Hospital</th>
+<th>Contact</th><th>Units</th><th>Required Date</th><th>Urgency</th>
+<th>Additional Details</th><th>Status</th>
+</tr></thead>
+<tbody>${rows}</tbody>
+</table>`;
+} catch (error) {
+console.error("Blood request loading error:", error);
+wrap.innerHTML = `<p>${escapeHTML(error.message || "Unable to load blood requests. Please try again.")}</p>`;
+}
+}
+async function updateRequestStatus(requestId, status) {
+if (!lifeDropCurrentUser || lifeDropCurrentUser.role !== "admin") {
+alert("Administrator login is required.");
+return;
+}
+const message = document.getElementById("managementMessage");
+message.textContent = "Updating request status...";
+message.className = "management-message";
+try {
+const response = await fetch("/api/blood-requests/update-status", {
+method: "POST",
+credentials: "same-origin",
+headers: { "Content-Type": "application/json" },
+body: JSON.stringify({ request_id: requestId, status })
+});
+const data = await response.json();
+if (!response.ok) throw new Error(data.message || "Unable to update request status.");
+message.textContent = data.message || "Request status updated successfully.";
+message.className = "management-message success";
+await loadDashboardStats();
+await loadBloodRequests();
+} catch (error) {
+message.textContent = error.message || "Unable to update request status.";
+message.className = "management-message error";
+await loadBloodRequests();
+}
+}
+async function loadDashboardStats() {
+try {
+const response = await fetch("/api/dashboard-stats", { credentials: "same-origin" });
+const data = await response.json();
+if (!response.ok) throw new Error(data.message || "Unable to load dashboard statistics.");
+document.getElementById("heroDonorCount").textContent = data.total_donors;
+document.getElementById("heroRequestCount").textContent = data.total_requests;
+document.getElementById("statTotalDonors").textContent = data.total_donors;
+document.getElementById("statTotalRequests").textContent = data.total_requests;
+document.getElementById("statFulfilledRequests").textContent = data.fulfilled_requests;
+document.getElementById("statPendingRequests").textContent = data.pending_requests;
+} catch (error) {
+console.error("Dashboard statistics error:", error);
+}
+}
+function updateLifeDropInterface(user) {
+lifeDropCurrentUser = user || null;
+const managementLink = document.getElementById("manageRequestsLink");
+const managementSection = document.getElementById("manage-requests");
+const navButtons = document.querySelector(".nav-buttons");
+const isAdmin = Boolean(user && user.role === "admin");
+if (managementLink) managementLink.classList.toggle("lifedrop-hidden", !isAdmin);
+if (managementSection) managementSection.classList.toggle("lifedrop-hidden", !isAdmin);
+if (!navButtons) return;
+if (!user) {
+navButtons.innerHTML = `
+<button class="login-btn" onclick="openModal('login')">Login</button>
+<button class="register-btn" onclick="openModal('register')">Register</button>`;
+} else {
+navButtons.innerHTML = `
+<span style="font-size:13px;font-weight:600;">Hi, ${escapeHTML(user.full_name)} (${escapeHTML(user.role)})</span>
+<button class="login-btn" onclick="lifeDropLogout()">Logout</button>`;
+}
+}
+async function checkLifeDropSession() {
+try {
+const response = await fetch("/api/me", { credentials: "same-origin" });
+const result = await response.json();
+updateLifeDropInterface(response.ok && result.authenticated ? result.user : null);
+if (lifeDropCurrentUser && lifeDropCurrentUser.role === "admin") {
+await loadBloodRequests();
+}
+} catch (error) {
+console.error("Session check failed:", error);
+updateLifeDropInterface(null);
+}
+}
+async function lifeDropLogout() {
+try {
+const response = await fetch("/api/logout", {
+method: "POST",
+credentials: "same-origin"
+});
+const result = await response.json();
+if (!response.ok || !result.success) throw new Error(result.message || "Logout failed.");
+updateLifeDropInterface(null);
+const wrap = document.getElementById("bloodRequestsTableWrap");
+if (wrap) wrap.innerHTML = "<p>Administrator login is required to manage blood requests.</p>";
+alert("Logged out successfully.");
+} catch (error) {
+alert(error.message || "Unable to log out.");
+}
+}
+async function loadMyBloodRequests() {
+if (!lifeDropCurrentUser || lifeDropCurrentUser.role !== "requester") return;
+try {
+const response = await fetch("/api/my-blood-requests", { credentials: "same-origin" });
+const result = await response.json();
+if (!response.ok) throw new Error(result.message || "Unable to load your requests.");
+console.log("My LifeDrop requests:", result.requests || []);
+} catch (error) {
+console.error("Unable to load personal requests:", error);
+}
+}
+document.addEventListener("DOMContentLoaded", async () => {
+await loadDashboardStats();
+await checkLifeDropSession();
+});
+function toggleMenu() {
+const nav =
+document.getElementById("navLinks");
+nav.classList.toggle("show");
+}
+function scrollToSection(id) {
+const section =
+document.getElementById(id);
+if (section) {
+section.scrollIntoView({
+behavior: "smooth"
+});
+}
+document
+.getElementById("navLinks")
+.classList.remove("show");
+}
+async function searchBlood() {
+const bloodGroup = document.getElementById("searchBloodGroup").value.trim().toUpperCase();
+const state = document.getElementById("searchState");
+const district = document.getElementById("searchDistrict");
+const subdistrict = document.getElementById("searchSubdistrict");
+const result = document.getElementById("searchResult");
+
+if (!bloodGroup || !state || !state.value) {
+result.innerHTML = `<div class="result-card"><div>
+<h4 style="color:#dc2626;">Please complete the search</h4>
+<p>Select a blood group and state. District and mandal filters are optional.</p>
+</div></div>`;
+return;
+}
+
+const stateName = state.options[state.selectedIndex].text.trim();
+const districtName = district && district.value ? district.options[district.selectedIndex].text.trim() : "";
+const subdistrictName = subdistrict && subdistrict.value ? subdistrict.options[subdistrict.selectedIndex].text.trim() : "";
+
+result.innerHTML = `<div class="result-card"><div><p>Searching for available donors...</p></div></div>`;
+
+try {
+const params = new URLSearchParams();
+params.set("blood_group", bloodGroup);
+params.set("state_code", state.value);
+params.set("state", stateName);
+if (district && district.value) {
+params.set("district_code", district.value);
+params.set("district", districtName);
+}
+if (subdistrict && subdistrict.value) {
+params.set("subdistrict_code", subdistrict.value);
+params.set("subdistrict", subdistrictName);
+}
+
+let response = await fetch(`/search-donors?${params.toString()}`, { credentials: "same-origin" });
+let data = await response.json();
+if (!response.ok) throw new Error(data.message || "Unable to search donors.");
+
+// If local codes do not match older donor records, retry with location names only.
+// This keeps search compatible with donor records created before location codes were saved.
+if ((!Array.isArray(data.donors) || data.donors.length === 0) && (stateName || districtName || subdistrictName)) {
+const fallback = new URLSearchParams();
+fallback.set("blood_group", bloodGroup);
+fallback.set("state", stateName);
+if (districtName) fallback.set("district", districtName);
+if (subdistrictName) fallback.set("subdistrict", subdistrictName);
+response = await fetch(`/search-donors?${fallback.toString()}`, { credentials: "same-origin" });
+data = await response.json();
+if (!response.ok) throw new Error(data.message || "Unable to search donors.");
+}
+
+if (!Array.isArray(data.donors) || data.donors.length === 0) {
+result.innerHTML = `<div class="result-card"><div>
+<h4>No donors found</h4>
+<p>No available ${escapeHTML(bloodGroup)} donors were found for the selected location.</p>
+<p>Try another district or clear the district and mandal filters to search the entire state.</p>
+</div></div>`;
+return;
+}
+
+result.innerHTML = `
+<h3 style="margin-bottom:15px;">${Number(data.count ?? data.donors.length)} matching donor(s) found</h3>
+${data.donors.map(donor => {
+const locationParts = [
+ donor.city,
+ donor.subdistrict_name || donor.subdistrict,
+ donor.district_name || donor.district,
+ donor.state_name || donor.state
+].filter(Boolean).map(value => String(value).trim()).filter((value, index, array) => value && array.findIndex(other => other.toLowerCase() === value.toLowerCase()) === index);
+const location = locationParts.join(", ") || "Not specified";
+return `
+<div class="result-card"><div>
+<h4>${escapeHTML(donor.full_name || "Donor")}</h4>
+<p><strong>Blood Group:</strong> ${escapeHTML(donor.blood_group || "Not specified")}</p>
+<p><strong>Location:</strong> ${escapeHTML(location)}</p>
+${donor.area ? `<p><strong>Area:</strong> ${escapeHTML(donor.area)}</p>` : ""}
+<p><strong>Mobile:</strong> ${donor.phone ? `<a href="tel:${escapeHTML(donor.phone)}">${escapeHTML(donor.phone)}</a>` : "Not available"}</p>
+<p><strong>Email:</strong> ${donor.email ? `<a href="mailto:${escapeHTML(donor.email)}">${escapeHTML(donor.email)}</a>` : "Not provided"}</p>
+</div><span class="available">● Available</span></div>`;
+}).join("")}`;
+
+} catch (error) {
+console.error("Donor search error:", error);
+result.innerHTML = `<div class="result-card"><div>
+<h4 style="color:#dc2626;">Search failed</h4>
+<p>${escapeHTML(error.message || "Unable to search donors right now. Please try again.")}</p>
+</div></div>`;
+}
+}
+function escapeHTML(value) {
+return String(value).replace(/[&<>"']/g, character => ({
+"&": "&amp;",
+"<": "&lt;",
+">": "&gt;",
+'"': "&quot;",
+"'": "&#39;"
+})[character]);
+}
+document
+.getElementById("bloodRequestForm")
+.addEventListener("submit", async function(event) {
+event.preventDefault();
+const form = this;
+const message = document.getElementById("requestMessage");
+const requestState = document.getElementById("requestState");
+const requestDistrict = document.getElementById("requestDistrict");
+const requestSubdistrict = document.getElementById("requestSubdistrict");
+if (!requestState.value) {
+message.className = "form-message error-message";
+message.textContent = "Please select a state or union territory.";
+requestState.focus();
+return;
+}
+const requestData = {
+patient_name: document.getElementById("patientName").value.trim(),
+contact_phone: document.getElementById("requesterPhone").value.trim(),
+blood_group: document.getElementById("requestBloodGroup").value,
+units_required: document.getElementById("units").value,
+hospital_name: document.getElementById("hospital").value.trim(),
+city: requestSubdistrict.value ? requestSubdistrict.options[requestSubdistrict.selectedIndex].text :
+requestDistrict.value ? requestDistrict.options[requestDistrict.selectedIndex].text :
+requestState.options[requestState.selectedIndex].text,
+state_code: requestState.value,
+state: requestState.options[requestState.selectedIndex].text,
+district_code: requestDistrict.value,
+district: requestDistrict.value ? requestDistrict.options[requestDistrict.selectedIndex].text : "",
+subdistrict_code: requestSubdistrict.value,
+subdistrict: requestSubdistrict.value ? requestSubdistrict.options[requestSubdistrict.selectedIndex].text : "",
+required_date: document.getElementById("requiredDate").value,
+urgency: document.querySelector('input[name="urgency"]:checked')?.value,
+reason: document.getElementById("reason").value.trim()
+};
+message.className = "form-message success-message";
+message.textContent = "Submitting your blood request...";
+try {
+const response = await fetch("/submit-blood-request", {
+method: "POST",
+credentials: "same-origin",
+headers: {
+"Content-Type": "application/json"
+},
+body: JSON.stringify(requestData)
+});
+const result = await response.json();
+if (!response.ok) {
+message.className = "form-message error-message";
+message.textContent =
+result.message || "Unable to submit your request.";
+message.scrollIntoView({
+behavior: "smooth",
+block: "center"
+});
+return;
+}
+message.className = "form-message success-message";
+message.textContent =
+result.message || "Blood request submitted successfully!";
+form.reset();
+} catch (error) {
+message.className = "form-message error-message";
+message.textContent =
+"Unable to connect to the server. Please try again.";
+console.error("Blood request error:", error);
+}
+message.scrollIntoView({
+behavior: "smooth",
+block: "center"
+});
+});
+document
+.getElementById("donorForm")
+.addEventListener("submit", async function(event) {
+event.preventDefault();
+const form = this;
+const message = document.getElementById("donorMessage");
+const donorState = document.getElementById("donorState");
+const donorDistrict = document.getElementById("donorDistrict");
+const donorSubdistrict = document.getElementById("donorSubdistrict");
+if (!donorState.value) {
+message.className = "form-message error-message";
+message.textContent = "Please select a state or union territory.";
+donorState.focus();
+return;
+}
+const donorData = {
+full_name: document.getElementById("donorName").value.trim(),
+email: document.getElementById("donorEmail").value.trim(),
+phone: document.getElementById("donorPhone").value.trim(),
+password: document.getElementById("donorPassword").value,
+blood_group: document.getElementById("donorBloodGroup").value,
+city: donorSubdistrict.value ? donorSubdistrict.options[donorSubdistrict.selectedIndex].text :
+donorDistrict.value ? donorDistrict.options[donorDistrict.selectedIndex].text :
+donorState.options[donorState.selectedIndex].text,
+state_code: donorState.value,
+state: donorState.options[donorState.selectedIndex].text,
+district_code: donorDistrict.value,
+district: donorDistrict.value ? donorDistrict.options[donorDistrict.selectedIndex].text : "",
+subdistrict_code: donorSubdistrict.value,
+subdistrict: donorSubdistrict.value ? donorSubdistrict.options[donorSubdistrict.selectedIndex].text : ""
+};
+message.className = "form-message success-message";
+message.textContent = "Registering donor...";
+try {
+const response = await fetch("/register-donor", {
+method: "POST",
+credentials: "same-origin",
+headers: { "Content-Type": "application/json" },
+body: JSON.stringify(donorData)
+});
+const result = await response.json();
+if (!response.ok) {
+message.className = "form-message error-message";
+message.textContent = result.message || "Registration failed.";
+return;
+}
+message.className = "form-message success-message";
+message.textContent = result.message || "Donor registered successfully!";
+if (result.user) updateLifeDropInterface(result.user);
+form.reset();
+} catch (error) {
+message.className = "form-message error-message";
+message.textContent = "Unable to connect to the server. Please try again.";
+console.error("Registration error:", error);
+}
+});
+let authMode = "login";
+function openModal(mode) {
+authMode = mode === "register" ? "register" : "login";
+const isRegister = authMode === "register";
+const modal = document.getElementById("authModal");
+const title = document.getElementById("modalTitle");
+const nameField = document.getElementById("nameField");
+const phoneField = document.getElementById("authPhoneField");
+const phoneInput = document.getElementById("authPhone");
+const identifier = document.getElementById("authEmail");
+const switchText = document.getElementById("switchText");
+const switchButton = document.getElementById("switchButton");
+const submitButton = document.getElementById("authSubmitButton");
+const message = document.getElementById("authMessage");
+title.textContent = isRegister ? "Create Requester Account" : "Login to LifeDrop";
+nameField.style.display = isRegister ? "flex" : "none";
+phoneField.style.display = isRegister ? "flex" : "none";
+document.getElementById("authName").required = isRegister;
+phoneInput.required = isRegister;
+identifier.type = isRegister ? "email" : "text";
+identifier.required = !isRegister;
+identifier.placeholder = isRegister ? "Email address (optional)" : "Mobile number or email";
+identifier.autocomplete = isRegister ? "email" : "username";
+switchText.textContent = isRegister ? "Already have an account?" : "Don't have an account?";
+switchButton.textContent = isRegister ? "Login" : "Register";
+submitButton.textContent = isRegister ? "Create Account" : "Login";
+message.textContent = "";
+message.className = "form-message";
+modal.classList.add("active");
+}
+function closeModal() {
+document.getElementById("authModal").classList.remove("active");
+}
+function switchAuth() {
+openModal(authMode === "login" ? "register" : "login");
+}
+document.getElementById("authForm").addEventListener("submit", async function(event) {
+event.preventDefault();
+const isRegister = authMode === "register";
+const identifier = document.getElementById("authEmail").value.trim();
+const password = document.getElementById("authPassword").value;
+const fullName = document.getElementById("authName").value.trim();
+const phone = document.getElementById("authPhone").value.trim();
+const message = document.getElementById("authMessage");
+const submitButton = document.getElementById("authSubmitButton");
+if (isRegister && !/^[0-9]{10}$/.test(phone)) {
+message.textContent = "Enter a valid 10-digit mobile number.";
+message.className = "form-message error-message";
+return;
+}
+if (isRegister && password.length < 8) {
+message.textContent = "Password must contain at least 8 characters.";
+message.className = "form-message error-message";
+return;
+}
+submitButton.disabled = true;
+submitButton.textContent = isRegister ? "Creating Account..." : "Logging In...";
+try {
+const response = await fetch(isRegister ? "/api/register-requester" : "/api/login", {
+method: "POST",
+credentials: "same-origin",
+headers: { "Content-Type": "application/json" },
+body: JSON.stringify(isRegister
+? { full_name: fullName, email: identifier, phone, password }
+: { identifier, password })
+});
+const result = await response.json();
+if (!response.ok || !result.success) throw new Error(result.message || "Authentication failed.");
+updateLifeDropInterface(result.user);
+message.textContent = result.message || "Success!";
+message.className = "form-message success-message";
+this.reset();
+setTimeout(async () => {
+closeModal();
+if (result.user.role === "admin") await loadBloodRequests();
+if (result.user.role === "requester") await loadMyBloodRequests();
+// Searching donors is available to every visitor, including logged-in users.
+// If blood group and state are already selected, refresh the results after auth.
+const searchGroup = document.getElementById("searchBloodGroup");
+const searchState = document.getElementById("searchState");
+if (searchGroup && searchGroup.value && searchState && searchState.value) {
+await searchBlood();
+}
+}, 400);
+} catch (error) {
+message.textContent = error.message || "Unable to connect to LifeDrop.";
+message.className = "form-message error-message";
+} finally {
+submitButton.disabled = false;
+submitButton.textContent = isRegister ? "Create Account" : "Login";
+}
+});
+document
+.getElementById("authModal")
+.addEventListener(
+"click",
+function(event) {
+if (event.target === this) {
+closeModal();
+}
+}
+);
+// Offline cascading Indian location selectors.
+// Data is served by the local Flask API; no external geolocation service is used.
+async function fetchLocationOptions(url) {
+const response = await fetch(url);
+if (!response.ok) throw new Error("Unable to load local location data.");
+return response.json();
+}
+function fillLocationSelect(select, items, placeholder, valueKey = "code", labelKey = "name") {
+select.replaceChildren();
+const first = document.createElement("option");
+first.value = "";
+first.textContent = placeholder;
+select.appendChild(first);
+items.forEach(item => {
+const option = document.createElement("option");
+option.value = item[valueKey];
+option.textContent = item[labelKey];
+select.appendChild(option);
+});
+select.disabled = items.length === 0;
+}
+function setLocationMessage(select, message) {
+select.replaceChildren();
+const option = document.createElement("option");
+option.value = "";
+option.textContent = message;
+select.appendChild(option);
+select.disabled = true;
+}
+function setupOfflineLocation(prefix) {
+const stateSelect = document.getElementById(prefix + "State");
+const districtSelect = document.getElementById(prefix + "District");
+const subdistrictSelect = document.getElementById(prefix + "Subdistrict");
+if (!stateSelect || !districtSelect || !subdistrictSelect) return;
+async function loadStates() {
+try {
+const states = await fetchLocationOptions("/api/locations/states");
+fillLocationSelect(stateSelect, states, "Select State / UT");
+} catch (error) {
+setLocationMessage(stateSelect, "Location data unavailable");
+console.error("Offline state data error:", error);
+}
+}
+stateSelect.addEventListener("change", async () => {
+setLocationMessage(districtSelect, "Loading districts...");
+setLocationMessage(subdistrictSelect, "All Mandals / Sub-districts");
+if (!stateSelect.value) {
+setLocationMessage(districtSelect, "All Districts");
+setLocationMessage(subdistrictSelect, "All Mandals / Sub-districts");
+return;
+}
+try {
+const districts = await fetchLocationOptions(
+"/api/locations/districts?state_code=" + encodeURIComponent(stateSelect.value)
+);
+fillLocationSelect(districtSelect, districts, "All Districts");
+setLocationMessage(subdistrictSelect, "All Mandals / Sub-districts");
+} catch (error) {
+setLocationMessage(districtSelect, "Could not load districts");
+console.error("Offline district data error:", error);
+}
+});
+districtSelect.addEventListener("change", async () => {
+setLocationMessage(subdistrictSelect, "Loading mandals...");
+if (!districtSelect.value) {
+setLocationMessage(subdistrictSelect, "All Mandals / Sub-districts");
+return;
+}
+try {
+const subdistricts = await fetchLocationOptions(
+"/api/locations/subdistricts?district_code=" + encodeURIComponent(districtSelect.value)
+);
+fillLocationSelect(subdistrictSelect, subdistricts, "All Mandals / Sub-districts");
+} catch (error) {
+setLocationMessage(subdistrictSelect, "Could not load mandals");
+console.error("Offline sub-district data error:", error);
+}
+});
+loadStates();
+}
+document.addEventListener("DOMContentLoaded", () => {
+setupOfflineLocation("search");
+setupOfflineLocation("request");
+setupOfflineLocation("donor");
+});
+</script>
+</body>
+</html>

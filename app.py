@@ -46,12 +46,15 @@ VALID_BLOOD_GROUPS = {
 
 def get_db_connection():
     return mysql.connector.connect(
-        host=os.getenv("DB_HOST", "localhost"),
-        user=os.getenv("DB_USER", "root"),
+        host=os.getenv("DB_HOST"),
+        port=int(os.getenv("DB_PORT", "14561")),
+        user=os.getenv("DB_USER"),
         password=os.getenv("DB_PASSWORD"),
         database=os.getenv("DB_NAME", "lifedrop"),
+        ssl_ca=os.getenv("DB_SSL_CA"),
+        ssl_verify_cert=True,
+        connection_timeout=15
     )
-
 
 def get_request_data():
     return request.get_json(silent=True) or request.form
@@ -1087,6 +1090,7 @@ def update_blood_request_status():
 
         return jsonify({
             "success": False,
+            
             "message": "Unable to update request status.",
         }), 500
 

@@ -30,3 +30,10 @@ Thumbs.db
 create_admin.py
 
 templates/index_before_offline_locations.html
+
+# Database certificates
+certs/
+
+lifedrop_schema.sql
+lifedrop_schema_utf8.sql
+
